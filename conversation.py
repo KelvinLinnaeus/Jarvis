@@ -1,6 +1,8 @@
 random_text = [
-  "Cool, I'm on it sir",
-  "okay sir, I'm working on it",
+  "I'm on it sir",
+  "okay boss, I'm working on it",
   "Just a second sir",
-  "On it sir"
+  "Just a second",
+  "Just a second boss",
+  "On it "
 ]

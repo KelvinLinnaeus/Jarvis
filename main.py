@@ -8,6 +8,7 @@ from decouple import config
 from datetime import datetime
 from conversation import random_text
 from random import choice
+from online import find_my_ip, search_on_google, search_on_wikipedia, youtube
 
 engine = pyttsx3.init("sapi5")
 engine.setProperty("volume", 1.5)
@@ -98,3 +99,26 @@ if __name__ == '__main__':
         speak("Opening Notepad for you")
         notepad_path = "C:\\Users\\kelvi\\AppData\\Local\\Microsoft\\WindowsApps\\notepad.exe"
         os.startfile(notepad_path)
+
+      elif "ip address" in query:
+        ip_address = find_my_ip()
+        speak(f"Your IP address is {ip_address}")
+        print(f"Your IP address is {ip_address}")
+
+      elif "open youtube" in query:
+        speak("What do you want to play sir?")
+        video = take_command().lower()
+        youtube(video)
+
+      elif "open google" in query:
+        speak("What would you like to search sir?")
+        query = take_command().lower()
+        search_on_google(query)
+
+      elif "wikipedia" in query:
+        speak("What would you like to search on wikipedia sir?")
+        search = take_command().lower()
+        results = search_on_wikipedia(search)
+        speak(f"According to Wikipedia, {results}")
+        speak("I have printed the results for as well.")
+        print(results)

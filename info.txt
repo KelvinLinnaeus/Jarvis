@@ -4,6 +4,6 @@ pip install Pyaudio
 pip install python-decouple #For .env
 pip install datetime
 pip install keyboard
-pip install
-pip install
-pip install
+pip install requests
+pip install wikipedia
+pip install pywhatkit
