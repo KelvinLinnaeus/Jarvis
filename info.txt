@@ -3,7 +3,7 @@ pip install SpeechRecognition
 pip install Pyaudio
 pip install python-decouple #For .env
 pip install datetime
-pip install
+pip install keyboard
 pip install
 pip install
 pip install
