@@ -8,7 +8,7 @@ from decouple import config
 from datetime import datetime
 from conversation import random_text
 from random import choice
-from online import find_my_ip, search_on_google, search_on_wikipedia, youtube
+from online import find_my_ip, search_on_google, search_on_wikipedia, youtube, get_news
 
 engine = pyttsx3.init("sapi5")
 engine.setProperty("volume", 1.5)
@@ -33,7 +33,7 @@ def greet_me():
     speak(f"Good afternoon {user}")
   elif (hour >= 16) and (hour < 19):
     speak(f"Good evening {user}")
-  speak(f"It's {hostname}. How can I be of assist sir")
+  speak(f"Anything I can do?")
   
 listening = False
 def start_listening():
@@ -74,7 +74,7 @@ def take_command():
       exit()
 
   except Exception:
-    speak("Sorry didn't grab that boss. Could you come again?")
+    speak("Sorry didn't grab that. Could you come again?")
     queri = "None"
   return queri
 
@@ -122,3 +122,9 @@ if __name__ == '__main__':
         speak(f"According to Wikipedia, {results}")
         speak("I have printed the results for as well.")
         print(results)
+
+      elif "give me news" in query:
+        speak("I am reading out the latest headline from apple")
+        speak(get_news())
+        speak("I have printed a copy for you boss. You could check it out at your free time")
+        print(*get_news(),sep="\n")
