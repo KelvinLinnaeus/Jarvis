@@ -9,3 +9,4 @@ pip install wikipedia
 pip install pywhatkit
 pip install imdbpy
 pip install wolframalpha
+pip install Pyautogui

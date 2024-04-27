@@ -6,6 +6,9 @@ import subprocess as sp
 import requests
 import imdb
 import wolframalpha
+import pyautogui
+import webbrowser
+import time
 
 from decouple import config
 from datetime import datetime
@@ -195,5 +198,29 @@ if __name__ == '__main__':
 
         except StopIteration:
           speak("I couldn't find that. Please try again")
+
+      elif "subscribe" in query:
+        speak("Subscribbing")
+        speak("Firsly go to youtube")
+        webbrowser.open("https://www.youtube.com/")
+        speak("Click on the search bar")
+        pyautogui.moveTo(806, 125,1)
+        pyautogui.click(x=806, y=125,clicks=1,interval=0, button="left")
+        speak("Error bg night")
+        pyautogui.typewrite("Error bg night", 0.1)
+        time.sleep(1)
+        speak("Press enter")
+        pyautogui.press("enter")
+        pyautogui.moveTo(971, 314,1)
+        speak("Here is the channel")
+        pyautogui.moveTo(1638, 314,1)
+        speak("Click here to subscribe")
+        pyautogui.click(x=1638, y=314,clicks=1, interval=0, button="left")
+        speak("And also Don't forget to press the bell icon")
+        pyautogui.moveTo(1750,314,1)
+        pyautogui.click(x=1750,y=314,clicks=1,interval=0,button="left")
+        speak("Turn on all notifications")
+        pyautogui.click(x=1750,y=314,clicks=1,button="left")
+        
 
           
