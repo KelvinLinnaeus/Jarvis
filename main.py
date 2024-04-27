@@ -4,6 +4,7 @@ import keyboard
 import os
 import subprocess as sp
 import requests
+import imdb
 
 from decouple import config
 from datetime import datetime
@@ -139,3 +140,25 @@ if __name__ == '__main__':
         speak(f"The current temperature is {temperature}, but feel like {feels_like}")
         speak(f"Also the weather report talks about {weather}")
         print(f"Description: {weather} \n Temperature: {temperature} \n Feels like: {feels_like}")
+
+      elif "movie" in query:
+        movies_db = imdb.IMDb()
+        speak("Tell me the movie name")
+        text = take_command().lower() 
+        movies = movies_db.search_movie(text)
+        speak(f"Searching for {text}")
+        speak("I found these")
+        for movie in movies:
+          title = movie["title"]
+          year = movie["year"]
+          # speak(f"{title} - {year}")
+          info = movie.getID()
+          movie_info = movies_db.get_movie(info)
+          rating = movie_info["rating"]
+          cast = movie_info["cast"]
+          actor = cast[0:5]
+          plot = movie_info.get("plot outline", "plot summary not available")
+          print(f"{title} was released in {year} has imdb ratings of {rating} . It has a cast of {actor}. The plot summary is {plot}")
+          speak(f"{title} was released in {year} has imdb ratings of {rating}. The plot summary is {plot}")
+          break
+          
