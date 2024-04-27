@@ -7,3 +7,4 @@ pip install keyboard
 pip install requests
 pip install wikipedia
 pip install pywhatkit
+pip install imdbpy

@@ -3,12 +3,13 @@ import speech_recognition as sr
 import keyboard
 import os
 import subprocess as sp
+import requests
 
 from decouple import config
 from datetime import datetime
 from conversation import random_text
 from random import choice
-from online import find_my_ip, search_on_google, search_on_wikipedia, youtube, get_news
+from online import find_my_ip, search_on_google, search_on_wikipedia, youtube, get_news, weather_forecast
 
 engine = pyttsx3.init("sapi5")
 engine.setProperty("volume", 1.5)
@@ -128,3 +129,13 @@ if __name__ == '__main__':
         speak(get_news())
         speak("I have printed a copy for you boss. You could check it out at your free time")
         print(*get_news(),sep="\n")
+
+      elif "weather" in query:
+        # speak("Tell me the name of your city")
+        # city = input("Enter name of city: ")
+        city = "Kasoa"
+        speak(f"Getting weather report for {city}")
+        weather, temperature, feels_like = weather_forecast(city)
+        speak(f"The current temperature is {temperature}, but feel like {feels_like}")
+        speak(f"Also the weather report talks about {weather}")
+        print(f"Description: {weather} \n Temperature: {temperature} \n Feels like: {feels_like}")
