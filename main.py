@@ -5,6 +5,7 @@ import os
 import subprocess as sp
 import requests
 import imdb
+import wolframalpha
 
 from decouple import config
 from datetime import datetime
@@ -161,4 +162,38 @@ if __name__ == '__main__':
           print(f"{title} was released in {year} has imdb ratings of {rating} . It has a cast of {actor}. The plot summary is {plot}")
           speak(f"{title} was released in {year} has imdb ratings of {rating}. The plot summary is {plot}")
           break
+      
+      elif "calculate" in query:
+        app_id = "PU6A5L-KUT9EU9A7Y"
+        client = wolframalpha.Client(app_id)
+        ind = query.lower().split().index("calculate")
+        text = query.split()[ind +1:]
+        result = client.query(" ".join(text))
+        try:
+          ans = next(result.results).text
+          print(f"The answer is {ans}")
+          speak(f"The answer is {ans}")
+        except StopIteration:
+          speak("I couldn't find that. Please try again")
+
+      elif "what is" in query or "who is" in query or "which is" in query:
+        app_id = "PU6A5L-KUT9EU9A7Y"
+        client = wolframalpha.Client(app_id)
+        try:
+          ind = query.lower().index("what is") if "what is" in query.lower() else \
+          query.lower().index("who is") if "who is" in query.lower() else \
+          query.lower().index("which is") if "which is" in query.lower() else None
+          
+          if ind is not None:
+            text = query.split()[ind + 2:]
+            result = client.query(" ".join(text))
+            ans = next(result.results).text
+            print(f"The answer is {ans}")
+            speak(f"The answer is {ans}")
+          else:
+            speak("I couldn't find that.")
+
+        except StopIteration:
+          speak("I couldn't find that. Please try again")
+
           

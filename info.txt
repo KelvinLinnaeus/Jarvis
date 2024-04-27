@@ -8,3 +8,4 @@ pip install requests
 pip install wikipedia
 pip install pywhatkit
 pip install imdbpy
+pip install wolframalpha
