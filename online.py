@@ -26,7 +26,7 @@ def youtube(video):
   
 def get_news():
   news_headline =[]
-  results = requests.get(f"https://newsapi.org/v2/everything?q=apple&from=2024-04-24&to=2024-04-24&sortBy=popularity&apiKey=08aaddd3577f4816998b5948a486b75b").json()
+  results = requests.get(f"https://newsapi.org/v2/everything?q=apple&from=2024-04-24&to=2024-04-24&sortBy=popularity&apiKey=").json()
   articles = results["articles"]
   for article in articles:
     news_headline.append(article["title"])
