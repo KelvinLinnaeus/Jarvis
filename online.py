@@ -33,7 +33,7 @@ def get_news():
   return news_headline[:6]
 
 def weather_forecast(city):
-  res = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid=6434a32b70cc48747d171becd0fdc53a").json()
+  res = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid=").json()
   weather = res["weather"][0]["main"]
   temperature = res["main"]["temp"]
   feels_like = res["main"]["feels_like"]
